@@ -12,6 +12,6 @@ public class MemberController {
     @GetMapping("/test")
     @ApiErrorCodeExamples({ErrorCode.BAD_REQUEST, ErrorCode.FORBIDDEN, ErrorCode.NOT_FOUND})
     public String test() {
-        return "Hello, World!3";
+        return "Hello, World!4";
     }
 }
