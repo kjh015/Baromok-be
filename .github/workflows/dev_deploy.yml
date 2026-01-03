@@ -47,10 +47,10 @@ jobs:
           cat docker-compose.yml
           cp docker-compose.yml deploy/
           cp -r .platform deploy/
-          cd deploy && zip -r ../deploy.zip .
+          cd deploy && zip -r deploy.zip .
 
       - name: Verify Deployment Package
-        run: unzip -l deploy.zip
+        run: unzip -l deploy/deploy.zip
 
       - name: Beanstalk Deploy
         uses: einaregilsson/beanstalk-deploy@v20
@@ -61,6 +61,6 @@ jobs:
           environment_name: baromok-dev-env
           version_label: github-action-${{ github.sha }}
           region: ap-northeast-2
-          deployment_package: deploy.zip
+          deployment_package: deploy/deploy.zip
           wait_for_deployment: false
 
