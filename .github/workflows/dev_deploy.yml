@@ -42,7 +42,7 @@ jobs:
       # 3. 배포 패키지 생성 (JAR 제외, 설정 파일만)
       - name: Generate deployment package
         run: |
-          mkdir -p deploy
+          mkdir -p deploy/.platform/nginx/
           sed -i 's|${DOCKER_IMAGE_URL}|${{ steps.build-image.outputs.image }}|g' docker-compose.yml          
           cp docker-compose.yml deploy/
           cp .platform/nginx.conf deploy/.platform/nginx/nginx.conf
