@@ -50,7 +50,7 @@ jobs:
           cd deploy && zip -r ../deploy.zip .
 
       - name: Verify Deployment Package
-        run: unzip -l deploy/deploy.zip
+        run: unzip -l deploy.zip
 
       - name: Beanstalk Deploy
         uses: einaregilsson/beanstalk-deploy@v20
