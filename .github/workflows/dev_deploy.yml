@@ -43,11 +43,11 @@ jobs:
       - name: Generate deployment package
         run: |
           mkdir -p deploy
-          # docker-compose.yml 내의 이미지 주소를 방금 빌드한 것으로 교체
           sed -i 's|${DOCKER_IMAGE_URL}|${{ steps.build-image.outputs.image }}|g' docker-compose.yml
+          cat docker-compose.yml
           cp docker-compose.yml deploy/
-          cp -r .platform deploy/ # Nginx 설정 포함
-          cd deploy && zip -r deploy.zip .
+          cp -r .platform deploy/
+          cd deploy && zip -r ../deploy.zip .
 
       - name: Verify Deployment Package
         run: unzip -l deploy/deploy.zip
@@ -61,6 +61,6 @@ jobs:
           environment_name: baromok-dev-env
           version_label: github-action-${{ github.sha }}
           region: ap-northeast-2
-          deployment_package: deploy/deploy.zip
+          deployment_package: deploy.zip
           wait_for_deployment: false
 
