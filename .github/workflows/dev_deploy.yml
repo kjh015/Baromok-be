@@ -43,10 +43,9 @@ jobs:
       - name: Generate deployment package
         run: |
           mkdir -p deploy
-          sed -i 's|${DOCKER_IMAGE_URL}|${{ steps.build-image.outputs.image }}|g' docker-compose.yml
-          cat docker-compose.yml
+          sed -i 's|${DOCKER_IMAGE_URL}|${{ steps.build-image.outputs.image }}|g' docker-compose.yml          
           cp docker-compose.yml deploy/
-          cp -r .platform deploy/
+          cp .platform/nginx.conf deploy/.platform/nginx/nginx.conf
           cd deploy && zip -r deploy.zip .
 
       - name: Verify Deployment Package
