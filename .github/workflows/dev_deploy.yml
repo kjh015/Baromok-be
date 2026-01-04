@@ -45,7 +45,7 @@ jobs:
           mkdir -p deploy/.platform/nginx/
           sed -i 's|${DOCKER_IMAGE_URL}|${{ steps.build-image.outputs.image }}|g' docker-compose.yml          
           cp docker-compose.yml deploy/
-          cp .platform/nginx.conf deploy/.platform/nginx/nginx.conf
+          cp nginx/nginx.conf deploy/nginx/nginx.conf
           cd deploy && zip -r deploy.zip .
 
       - name: Verify Deployment Package
