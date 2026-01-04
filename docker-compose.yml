@@ -1,6 +1,7 @@
 version: '3.8'
 services:
   app:
+    container_name: app
     image: ${DOCKER_IMAGE_URL} # GitHub Actions에서 변수 치환 예정
     expose:
       - "8080"
@@ -8,6 +9,7 @@ services:
       - SPRING_PROFILES_ACTIVE=dev
 
   nginx:
+    container_name: nginx
     image: nginx:alpine
     ports:
       - "80:80"
